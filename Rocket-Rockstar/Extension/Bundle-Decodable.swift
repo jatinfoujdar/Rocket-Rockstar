@@ -23,7 +23,7 @@ extension Bundle {
         let decoder = JSONDecoder()
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-y"
+        formatter.dateFormat = "yyyy-MM-dd"
         decoder.dateDecodingStrategy = .formatted(formatter)
         
         guard let loaded = try? decoder.decode(T.self, from: data) else{

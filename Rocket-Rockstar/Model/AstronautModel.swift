@@ -11,5 +11,11 @@ struct AstronautModel: Codable,Identifiable {
     
     let id: String
     let name: String
-    let descreption: String
+    let description: String
+}
+
+
+struct CrewMemeberModel{
+    let role: String
+    let astronaut: AstronautModel
 }

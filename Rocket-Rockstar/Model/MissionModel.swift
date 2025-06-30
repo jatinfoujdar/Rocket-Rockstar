@@ -34,7 +34,3 @@ struct MissionModel: Codable, Identifiable {
 
 
 
-struct CrewMemebrModel{
-    let role: String
-    let astronaut: AstronautModel
-}
