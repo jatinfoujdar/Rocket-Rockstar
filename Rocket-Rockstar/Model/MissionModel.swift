@@ -31,3 +31,10 @@ struct MissionModel: Codable, Identifiable {
         launchDate?.formatted(date: .abbreviated, time: .omitted) ?? "N/A"
     }
 }
+
+
+
+struct CrewMemebrModel{
+    let role: String
+    let astronaut: AstronautModel
+}
