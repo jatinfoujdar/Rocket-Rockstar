@@ -34,9 +34,30 @@ struct ContentView: View {
                     }
                     .padding([.horizontal, .bottom])
                 }
-                .navigationTitle("Rocket Rockstar")
-                .toolbarBackground(Color.black.opacity(0.9), for: .navigationBar)
-                .toolbarColorScheme(.dark, for: .navigationBar)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Rocket Rockstar")
+                            .font(.largeTitle)
+                            .fontWeight(.black)
+                            .kerning(1.2)
+                            .overlay(
+                                LinearGradient(
+                                    colors: [.red, .orange, .yellow, .green, .blue, .purple, .pink],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                                .mask(
+                                    Text("Rocket Rockstar")
+                                        .font(.largeTitle)
+                                        .fontWeight(.black)
+                                        .kerning(1.2)
+                                )
+                            )
+                            .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 2)
+
+                    }
+                }
+
             }
         }
     }

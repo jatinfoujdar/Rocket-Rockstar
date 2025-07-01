@@ -104,71 +104,54 @@ struct MissionView: View {
                     
                     VStack(spacing: 25) {
                         ForEach(crew, id: \.astronaut.id) { crewMember in
-                            HStack(spacing: 20) {
-                                Image(crewMember.astronaut.id)
-                                    .resizable()
-                                    .frame(width: 70, height: 70)
-                                    .clipShape(Circle())
-                                    .overlay(
-                                        Circle()
-                                            .stroke(
-                                                LinearGradient(
-                                                    colors: [.pink, .purple, .blue, .cyan],
-                                                    startPoint: .topLeading,
-                                                    endPoint: .bottomTrailing
-                                                ),
-                                                lineWidth: 4
-                                            )
-                                    )
-                                    .shadow(color: .purple.opacity(0.9), radius: 15, x: 0, y: 0)
-                                
-                                VStack(alignment: .leading, spacing: 6) {
-                                    Text(crewMember.astronaut.name)
-                                        .font(.title3)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                        .shadow(color: .pink, radius: 3, x: 0, y: 0)
-                                    Text(crewMember.role.uppercased())
-                                        .font(.caption)
-                                        .fontWeight(.heavy)
-                                        .foregroundColor(.cyan)
-                                        .shadow(color: .blue, radius: 3, x: 0, y: 0)
-                                }
-                                Spacer()
-                            }
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .fill(Color.black.opacity(0.3))
-                                    .background(
-                                        LinearGradient(
-                                            colors: [.pink.opacity(0.3), .purple.opacity(0.3), .blue.opacity(0.3)],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
+                            NavigationLink(destination: AstronautDetailView(astronaut: crewMember.astronaut)) {
+                                HStack(spacing: 20) {
+                                    Image(crewMember.astronaut.id)
+                                        .resizable()
+                                        .frame(width: 70, height: 70)
+                                        .clipShape(Circle())
+                                        .overlay(
+                                            Circle().stroke(LinearGradient(colors: [.pink, .purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 4)
                                         )
-                                    )
-                                    .shadow(color: .purple.opacity(0.6), radius: 10, x: 0, y: 0)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(
-                                        LinearGradient(
-                                            colors: [.cyan, .blue, .purple],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        ),
-                                        lineWidth: 2
-                                    )
-                            )
-                            .padding(.horizontal)
+                                        .shadow(color: .purple.opacity(0.9), radius: 15)
+                                    
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        Text(crewMember.astronaut.name)
+                                            .font(.title3)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .shadow(color: .pink, radius: 3)
+                                        
+                                        Text(crewMember.role.uppercased())
+                                            .font(.caption)
+                                            .fontWeight(.heavy)
+                                            .foregroundColor(.cyan)
+                                    }
+                                    
+                                    Spacer()
+                                }
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .fill(Color.black.opacity(0.3))
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(
+                                            LinearGradient(colors: [.cyan, .blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing),
+                                            lineWidth: 2
+                                        )
+                                )
+                                .padding(.horizontal)
+                            }
                         }
                     }
+                    .padding(.vertical, 40)
                 }
-                .padding(.vertical, 40)
             }
+            .navigationTitle(mission.displayName.capitalized)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle(mission.displayName.capitalized)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
