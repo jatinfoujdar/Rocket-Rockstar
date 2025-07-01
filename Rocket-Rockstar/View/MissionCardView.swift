@@ -22,8 +22,9 @@ struct MissionCardView: View {
                 .shadow(radius: 8)
 
             // Mission Name
-            Text(mission.displayName)
-                .font(.headline)
+            Text(mission.displayName.capitalized)
+                .font(.title2)
+                .fontWeight(.bold)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
 
