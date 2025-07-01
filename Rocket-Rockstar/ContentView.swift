@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     let astronauts: [String: AstronautModel] = Bundle.main.decode("astronauts.json")
     let missions: [MissionModel] = Bundle.main.decode("missions.json")
     
@@ -16,24 +15,34 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(missions) { mission in
-                        NavigationLink {
-                            MissionView(mission: mission, astronauts: astronauts)
-                        } label: {
-                            MissionCardView(mission: mission) 
+            ZStack {
+               
+                SpaceThemeView()
+                    .ignoresSafeArea()
+                
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        ForEach(missions) { mission in
+                            NavigationLink {
+                                MissionView(mission: mission, astronauts: astronauts)
+                            } label: {
+                                MissionCardView(mission: mission)
+                                    .background(Color.black.opacity(0.2))
+                                    .cornerRadius(10)
+                            }
                         }
                     }
+                    .padding([.horizontal, .bottom])
                 }
-                .padding([.horizontal, .bottom])
+                .navigationTitle("Rocket Rockstar")
+                .toolbarBackground(Color.black.opacity(0.9), for: .navigationBar)
+                .toolbarColorScheme(.dark, for: .navigationBar)
             }
-            .navigationTitle("Rocket Rockstar")
         }
     }
 }
 
-
 #Preview {
     ContentView()
 }
+
